@@ -1,35 +1,41 @@
 import React from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import { Button } from 'keep-react';
-import responseMovies from './mocks/movies.json';
 import './App.css';
+import { CardComponent } from './components/CardComponent';
+import { TextInput } from 'keep-react';
+import responseMovies from './mocks/movies.json';
 
 function App() {
-  const [movies, setMovies] = React.useState(responseMovies.Search);
+  const movies = responseMovies.Search;
   const hasMovies = movies?.length > 0;
 
-  return (
-    <>
-      <div>
-        <img src={viteLogo} className="logo" alt="Vite logo" />
-        <img src={reactLogo} className="logo react" alt="React logo" />
-      </div>
-      <h1>Buscador de películas</h1>
+  const renderMovies = () => {
+    return (
+      <ul>
+        {movies.map((item) => (
+          <li key={item.imdbID}>
+            <CardComponent
+              id={item.imdbID}
+              poster={item.Poster}
+              title={item.Title}
+              year={item.Year}
+              type={item.Type}
+            />
+          </li>
+        ))}
+      </ul>
+    );
+  };
 
-      {hasMovies ? (
-        <ul>
-          {movies.map((item) => (
-            <li key={item.imdbID}>
-              <h3>{item.Title}</h3>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <span>'no hay nada'</span>
-      )}
-      <Button size="md">Default</Button>
-    </>
+  const renderNoResults = () => {
+    return <span>No hay nada</span>;
+  };
+
+  return (
+    <React.Fragment>
+      <h1>Buscador de películas</h1>
+      <TextInput id="input" placeholder="Default Input Field" color="gray" />
+      {hasMovies ? renderMovies() : renderNoResults()}
+    </React.Fragment>
   );
 }
 
