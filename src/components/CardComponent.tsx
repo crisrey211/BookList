@@ -7,9 +7,9 @@ import {
   Shower,
   Users,
 } from 'phosphor-react';
-import type { PosterProps } from '../vite-env';
+import type { Movie } from '../vite-env';
 
-export const CardComponent: React.FC<PosterProps> = ({ poster, title }) => {
+export const CardComponent: React.FC<Movie> = ({ poster, title }) => {
   return (
     <Card
       className="!max-w-xs overflow-hidden rounded-md md:!max-w-[478px]"
