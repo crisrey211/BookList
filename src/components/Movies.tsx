@@ -9,13 +9,13 @@ function ListMovies({ movies }: Props) {
   return (
     <ul>
       {movies.map((item) => (
-        <li key={item.imdbID}>
+        <li key={item.id}>
           <CardComponent
-            id={item.imdbID}
-            poster={item.Poster}
-            title={item.Title}
-            year={item.Year}
-            type={item.Type}
+            id={item.id}
+            poster={item.poster}
+            title={item.title}
+            year={item.year}
+            type={item.type}
           />
         </li>
       ))}
@@ -27,7 +27,7 @@ function NoMoviesResults() {
   return <span>No hay nada</span>;
 }
 
-export function Movies({ movies }) {
+export function Movies({ movies }: Props) {
   const hasMovies = movies?.length > 0;
   return hasMovies ? <ListMovies movies={movies} /> : <NoMoviesResults />;
 }
