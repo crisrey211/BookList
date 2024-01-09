@@ -19,6 +19,12 @@ const useMovies = () => {
 
 function App() {
   const { movies: mappedMovies } = useMovies();
+  const [form, setForm] = React.useState('');
+  const handleSubmit = (ev) => {
+    ev.preventeDefault;
+    setForm(ev.target.value);
+  };
+
   return (
     <React.Fragment>
       <h1>Buscador de películas</h1>
@@ -26,6 +32,8 @@ function App() {
         id="input"
         placeholder="Seven, The Lord of the Rings, ... "
         color="gray"
+        handleOnChange={handleSubmit}
+        value={form}
       />
       <Movies movies={mappedMovies} />
     </React.Fragment>
