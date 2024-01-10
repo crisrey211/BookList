@@ -2,23 +2,26 @@ import { TextInput } from 'keep-react';
 import React from 'react';
 import './App.css';
 import { Movies } from './components/Movies';
-import responseMovies from './mocks/movies.json';
+import responseMovies from './mocks/books.json';
 
 const useMovies = () => {
-  const movies = responseMovies.Search;
-  const mappedMovies = movies?.map((item) => ({
-    id: item.imdbID,
-    poster: item.Poster,
-    title: item.Title,
-    year: item.Year,
-    type: item.Type,
+  const books = responseMovies.library;
+  const mappedBooks = books?.map((item) => ({
+    title: item.book.title,
+    pages: item.book.pages,
+    genre: item.book.genre,
+    cover: item.book.cover,
+    synopsis: item.book.synopsis,
+    year: item.book.year,
+    id: item.book.ISBN,
+    author: item.book.author,
   }));
 
-  return { movies: mappedMovies };
+  return { books: mappedBooks };
 };
 
 function App() {
-  const { movies: mappedMovies } = useMovies();
+  const { books: mappedBooks } = useMovies();
   const [form, setForm] = React.useState('');
   const handleSubmit = (ev) => {
     ev.preventeDefault;
@@ -27,7 +30,7 @@ function App() {
 
   return (
     <React.Fragment>
-      <h1>Buscador de películas</h1>
+      <h1>Buscador de libros</h1>
       <TextInput
         id="input"
         placeholder="Seven, The Lord of the Rings, ... "
@@ -35,7 +38,7 @@ function App() {
         handleOnChange={handleSubmit}
         value={form}
       />
-      <Movies movies={mappedMovies} />
+      <Movies books={mappedBooks} />
     </React.Fragment>
   );
 }

@@ -1,21 +1,25 @@
 import { CardComponent } from './CardComponent';
-import type { ListOfMovies } from '../vite-env';
+import type { ListOfBooks } from '../vite-env';
+import '../css/books.css';
 
 interface Props {
-  movies: ListOfMovies;
+  books: ListOfBooks;
 }
 
-function ListMovies({ movies }: Props) {
+function ListBooks({ books }: Props) {
   return (
-    <ul>
-      {movies.map((item) => (
+    <ul className="container">
+      {books.map((item) => (
         <li key={item.id}>
           <CardComponent
             id={item.id}
-            poster={item.poster}
+            cover={item.cover}
             title={item.title}
+            author={item.author}
             year={item.year}
-            type={item.type}
+            pages={item.pages}
+            genre={item.genre}
+            synopsis={item.synopsis}
           />
         </li>
       ))}
@@ -23,11 +27,11 @@ function ListMovies({ movies }: Props) {
   );
 }
 
-function NoMoviesResults() {
+function NoBooksResults() {
   return <span>No hay nada</span>;
 }
 
-export function Movies({ movies }: Props) {
-  const hasMovies = movies?.length > 0;
-  return hasMovies ? <ListMovies movies={movies} /> : <NoMoviesResults />;
+export function Movies({ books }: Props) {
+  const hasMovies = books?.length > 0;
+  return hasMovies ? <ListBooks books={books} /> : <NoBooksResults />;
 }

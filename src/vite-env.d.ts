@@ -1,11 +1,19 @@
 /// <reference types="vite/client" />
 
-export interface Movie {
-  poster: string;
-  title: string;
-  year: string;
-  id: string;
-  type: string;
+export interface Author {
+  name: string;
+  otherBooks: string[];
 }
 
-export type ListOfMovies = Movie[];
+export interface Book {
+  title: string;
+  pages: number;
+  genre: string;
+  cover: string;
+  synopsis: string;
+  year: number;
+  id: string;
+  author: Author;
+}
+
+export type ListOfBooks = Book[];
