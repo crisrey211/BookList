@@ -5,10 +5,14 @@ export default {
     './index.html',
     './src/**/*.{js,ts,jsx,tsx}',
     'node_modules/keep-react/**/*.{js,jsx,ts,tsx}',
+    'node_modules/flowbite-react/lib/esm/**/*.js',
   ],
   presets: [keepPreset],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    // ...
+    require('flowbite/plugin'),
+  ],
 };

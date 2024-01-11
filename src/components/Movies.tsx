@@ -8,22 +8,21 @@ interface Props {
 
 function ListBooks({ books }: Props) {
   return (
-    <ul className="container">
+    <div className="grid grid-cols-3 grid-rows-4 ">
       {books.map((item) => (
-        <li key={item.id}>
-          <CardComponent
-            id={item.id}
-            cover={item.cover}
-            title={item.title}
-            author={item.author}
-            year={item.year}
-            pages={item.pages}
-            genre={item.genre}
-            synopsis={item.synopsis}
-          />
-        </li>
+        <CardComponent
+          key={item.id}
+          id={item.id}
+          cover={item.cover}
+          title={item.title}
+          author={item.author}
+          year={item.year}
+          pages={item.pages}
+          genre={item.genre}
+          synopsis={item.synopsis}
+        />
       ))}
-    </ul>
+    </div>
   );
 }
 

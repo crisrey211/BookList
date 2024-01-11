@@ -3,6 +3,7 @@ import React from 'react';
 import './App.css';
 import { Movies } from './components/Movies';
 import responseMovies from './mocks/books.json';
+import Filters from './components/Filters';
 
 const useMovies = () => {
   const books = responseMovies.library;
@@ -31,6 +32,7 @@ function App() {
   return (
     <React.Fragment>
       <h1>Buscador de libros</h1>
+      <Filters />
       <TextInput
         id="input"
         placeholder="Seven, The Lord of the Rings, ... "
