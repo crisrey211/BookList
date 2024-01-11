@@ -1,10 +1,11 @@
 import { TextInput } from 'keep-react';
-import React from 'react';
+import React, { useContext } from 'react';
 import './App.css';
 import { Movies } from './components/Movies';
 import responseMovies from './mocks/books.json';
 import Filters from './components/Filters';
 import { Cart } from './components/Cart';
+import { FiltersContext } from './context/filters.jsx';
 
 const useMovies = () => {
   const books = responseMovies.library;
@@ -23,10 +24,7 @@ const useMovies = () => {
 };
 
 function useFilters() {
-  const [filters, setFilters] = React.useState({
-    category: 'all',
-    maxPage: 1200,
-  });
+  const { filters, setFilters } = React.useContext(FiltersContext);
   const filterProducts = (products) => {
     return products.filter((product) => {
       return (
