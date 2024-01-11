@@ -25,12 +25,12 @@ const useMovies = () => {
 function useFilters() {
   const [filters, setFilters] = React.useState({
     category: 'all',
-    maxPrice: 1200,
+    maxPage: 1200,
   });
   const filterProducts = (products) => {
     return products.filter((product) => {
       return (
-        product.pages <= filters.maxPrice &&
+        product.pages <= filters.maxPage &&
         (product.genre === filters.category || filters.category === 'all')
       );
     });
@@ -40,9 +40,8 @@ function useFilters() {
 
 function App() {
   const { books: mappedBooks } = useMovies();
-  const [products] = React.useState(mappedBooks);
   const { filterProducts, setFilters } = useFilters();
-
+  const [products] = React.useState(mappedBooks);
   const filteredProducts = filterProducts(products);
   return (
     <React.Fragment>
