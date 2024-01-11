@@ -24,26 +24,34 @@ const useMovies = () => {
 
 function App() {
   const { books: mappedBooks } = useMovies();
-  const [form, setForm] = React.useState('');
-  const handleSubmit = (ev) => {
-    ev.preventeDefault;
-    setForm(ev.target.value);
-  };
+  const [products] = React.useState(mappedBooks);
+  const [filters, setFilters] = React.useState({
+    category: 'all',
+    maxPrice: 1200,
+  });
 
+  const filterProducts = (products) => {
+    return products.filter((product) => {
+      return (
+        product.pages <= filters.maxPrice &&
+        (product.genre === filters.category || filters.category === 'all')
+      );
+    });
+  };
+  const filteredProducts = filterProducts(products);
+  console.log(filteredProducts);
   return (
     <React.Fragment>
       <h1>Buscador de libros</h1>
-      <Filters />
+      <Filters onChange={setFilters} />
       <TextInput
         id="input"
         placeholder="Seven, The Lord of the Rings, ... "
         color="gray"
-        handleOnChange={handleSubmit}
-        value={form}
       />
       <div style={{ display: 'flex' }}>
-        <Movies books={mappedBooks} />
-        <Cart books={mappedBooks} />
+        <Movies books={filteredProducts} />
+        <Cart books={products} />
       </div>
     </React.Fragment>
   );
