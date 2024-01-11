@@ -4,6 +4,7 @@ import './App.css';
 import { Movies } from './components/Movies';
 import responseMovies from './mocks/books.json';
 import Filters from './components/Filters';
+import { Cart } from './components/Cart';
 
 const useMovies = () => {
   const books = responseMovies.library;
@@ -40,7 +41,10 @@ function App() {
         handleOnChange={handleSubmit}
         value={form}
       />
-      <Movies books={mappedBooks} />
+      <div style={{ display: 'flex' }}>
+        <Movies books={mappedBooks} />
+        <Cart books={mappedBooks} />
+      </div>
     </React.Fragment>
   );
 }
