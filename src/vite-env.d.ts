@@ -9,6 +9,11 @@ export interface ContextValue {
   setFilters: Dispatch<SetStateAction<FiltersState>>;
 }
 
+export interface ContextValueCart {
+  cart: FiltersState;
+  setCart: Dispatch<SetStateAction<FiltersState>>;
+}
+
 export interface Author {
   name: string;
   otherBooks: string[];

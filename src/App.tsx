@@ -1,11 +1,13 @@
 import { TextInput } from 'keep-react';
-import React from 'react';
+import React, { useContext } from 'react';
 import './App.css';
 import { Cart } from './components/Cart';
 import Filters from './components/Filters';
 import { Movies } from './components/Movies';
 import { FiltersContext } from './context/Filters';
 import responseMovies from './mocks/books.json';
+import { CartContext } from './context/Cart';
+import { useCart } from './mocks/useCart.js';
 
 const useMovies = () => {
   const books = responseMovies.library;
@@ -41,9 +43,13 @@ function App() {
   const { filterProducts, setFilters } = useFilters();
   const [products] = React.useState(mappedBooks);
   const filteredProducts = filterProducts(products);
+  const { cart, clearCart } = useCart();
+
   return (
     <React.Fragment>
       <h1>Buscador de libros</h1>
+      <button onClick={() => clearCart()}>Limpiar carrito</button>
+      {JSON.stringify(cart)}
       <Filters onChange={setFilters} />
       <TextInput
         id="input"

@@ -1,11 +1,13 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
+import { FiltersProvider } from './context/Filters';
+import { CartProvider } from './context/Cart';
 import './index.css';
-import { FiltersProvider } from './context/filters';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <FiltersProvider>
-    <App />
+    <CartProvider>
+      <App />
+    </CartProvider>
   </FiltersProvider>,
 );
