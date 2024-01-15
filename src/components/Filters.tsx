@@ -1,13 +1,10 @@
 import { Slider } from 'keep-react';
-import React from 'react';
 const Filters = ({ onChange }) => {
-  const [pages, setPages] = React.useState([0, 1200]);
-
   const handleChangePage = (ev) => {
     onChange((prevState) => ({ ...prevState, maxPage: ev[1] }));
   };
 
-  const handleChangeCategory = (ev) => {
+  const handleChangeCategory = (ev: React.ChangeEvent<HTMLSelectElement>) => {
     onChange((prevState) => ({ ...prevState, category: ev.target.value }));
   };
   return (
