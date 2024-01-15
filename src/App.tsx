@@ -1,11 +1,11 @@
 import { TextInput } from 'keep-react';
-import React, { useContext } from 'react';
+import React from 'react';
 import './App.css';
-import { Movies } from './components/Movies';
-import responseMovies from './mocks/books.json';
-import Filters from './components/Filters';
 import { Cart } from './components/Cart';
-import { FiltersContext } from './context/filters.jsx';
+import Filters from './components/Filters';
+import { Movies } from './components/Movies';
+import { FiltersContext } from './context/Filters';
+import responseMovies from './mocks/books.json';
 
 const useMovies = () => {
   const books = responseMovies.library;
